@@ -31,6 +31,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 @RestController
@@ -77,9 +79,11 @@ public class SpringbootApplication {
     PokemonResult pokemonResult = mapper.readValue(responseStream, PokemonResult.class);
 
     System.out.println("Got " + pokemonResult.results.size() + " results");
+    List<Pokemon> parsed = new ArrayList<>();
     for (int i = 0; i < pokemonResult.results.size(); i++) {
-      pokemonService.save(new Pokemon((long) i, pokemonResult.results.get(i).name));
+      parsed.add(new Pokemon((long) i, pokemonResult.results.get(i).name));
     }
+    pokemonService.saveAll(parsed);
 
     return "OK!";
   }

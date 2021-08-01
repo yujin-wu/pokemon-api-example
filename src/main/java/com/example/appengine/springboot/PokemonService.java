@@ -20,4 +20,8 @@ public class PokemonService {
     public void save(Pokemon data) {
         pokemonRepository.save(data);
     }
+
+    public void saveAll(List<Pokemon> data) {
+        pokemonRepository.saveAll(data);
+    }
 }
