@@ -55,6 +55,12 @@ public class SpringbootApplication {
     }
   }
 
+  @GetMapping("/")
+  public String readme() {
+    return "Hello world!<br/>" +
+            "1. Visit /load to tell the server to (re)fetch the dataset from https://pokeapi.co/api/v2/pokemon/.<br/>" +
+            "2. Visit /pokemon/{id} to view pokemon names";
+  }
 
   @GetMapping("/load")
   public String load() throws IOException  {
